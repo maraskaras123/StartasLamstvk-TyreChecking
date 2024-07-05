@@ -1,0 +1,84 @@
+﻿@page "/tyres"
+
+<PageTitle>Tyre Check</PageTitle>
+<EditForm OnValidSubmit="OnSubmit" Model="@Input">
+    <InputText Value="@Input" ValueExpression="() => Input" ValueChanged="OnInput"></InputText>
+</EditForm>
+
+
+<h1>Info</h1>
+
+<h1>@StartingNo</h1>
+<h2>@Group</h2>
+
+<button type="button" class="btn btn-primary" @onclick="() => { Input = string.Empty; }">Clear</button>
+<InputFile OnChange="OnFileChange"></InputFile>
+
+@code {
+    private string StartingNo { get; set; } = "###";
+    private string Group { get; set; } = "###";
+    private string Input { get; set; } = string.Empty;
+
+    private List<Tyre> Tyres { get; set; } = [new("8595646203578", "Test", "Test")];
+
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; }
+
+    private async Task PlayBeep()
+    {
+        await JSRuntime.InvokeVoidAsync("playBeep");
+    }
+
+    private void OnSubmit(EditContext context)
+    {
+        // OnInput(context.Model as string);
+    }
+
+    private async Task OnFileChange(InputFileChangeEventArgs args)
+    {
+        Tyres = [];
+
+        await using var stream = args.File.OpenReadStream();
+        using var reader = new StreamReader(stream);
+        while (await reader.ReadLineAsync() is { } line)
+        {
+            var info = line.Split(';');
+            if (info.Length != 3)
+            {
+                continue;
+            }
+            Tyres.Add(new(info[0], info[1], info[2]));
+        }
+        Console.WriteLine(Tyres.Count);
+    }
+
+    private void OnInput(string value)
+    {
+        Console.WriteLine("Test");
+        if (string.IsNullOrEmpty(value))
+        {
+            Group = "###";
+            StartingNo = "###";
+            Input = string.Empty;
+            PlayBeep();
+            return;
+        }
+
+        Console.WriteLine(value);
+        Tyre? tyre = Tyres.FirstOrDefault(x => x.TyreId == value);
+        if (tyre is null)
+        {
+            Group = "###";
+            StartingNo = "###";
+            PlayBeep();
+            return;
+        }
+
+        Group = tyre.Group;
+        StartingNo = tyre.StartingNo;
+        Input = string.Empty;
+    }
+
+    record Tyre(string TyreId, string StartingNo, string Group);
+
+}

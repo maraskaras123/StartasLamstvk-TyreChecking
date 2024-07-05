@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TyreScanner", "TyreScanner\TyreScanner.csproj", "{D28EE4C4-4C02-49C6-AADD-12B15262C31B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TyreScanner.Web", "TyreScanner.Web\TyreScanner.Web.csproj", "{1EE4338E-2B67-44A9-9DB1-8BEAF8F801FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D28EE4C4-4C02-49C6-AADD-12B15262C31B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28EE4C4-4C02-49C6-AADD-12B15262C31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28EE4C4-4C02-49C6-AADD-12B15262C31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28EE4C4-4C02-49C6-AADD-12B15262C31B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EE4338E-2B67-44A9-9DB1-8BEAF8F801FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EE4338E-2B67-44A9-9DB1-8BEAF8F801FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EE4338E-2B67-44A9-9DB1-8BEAF8F801FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EE4338E-2B67-44A9-9DB1-8BEAF8F801FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {989369D9-9C54-4FBE-B345-3B270D5241AF}
+	EndGlobalSection
+EndGlobal
