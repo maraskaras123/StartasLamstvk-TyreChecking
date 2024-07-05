@@ -19,7 +19,7 @@
     private string Group { get; set; } = "###";
     private string Input { get; set; } = string.Empty;
 
-    private List<Tyre> Tyres { get; set; } = [new("8595646203578", "Test", "Test")];
+    private List<Tyre> TyreList { get; set; } = [new("8595646203578", "Test", "Test")];
 
     [Inject]
     private IJSRuntime JSRuntime { get; set; }
@@ -36,7 +36,7 @@
 
     private async Task OnFileChange(InputFileChangeEventArgs args)
     {
-        Tyres = [];
+        TyreList = [];
 
         await using var stream = args.File.OpenReadStream();
         using var reader = new StreamReader(stream);
@@ -47,9 +47,9 @@
             {
                 continue;
             }
-            Tyres.Add(new(info[0], info[1], info[2]));
+            TyreList.Add(new(info[0], info[1], info[2]));
         }
-        Console.WriteLine(Tyres.Count);
+        Console.WriteLine(TyreList.Count);
     }
 
     private void OnInput(string value)
@@ -65,7 +65,7 @@
         }
 
         Console.WriteLine(value);
-        Tyre? tyre = Tyres.FirstOrDefault(x => x.TyreId == value);
+        Tyre? tyre = TyreList.FirstOrDefault(x => x.TyreId == value);
         if (tyre is null)
         {
             Group = "###";
